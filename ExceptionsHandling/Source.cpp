@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <vector>
 
 class Announcer
 {
@@ -18,11 +19,29 @@ private:
 	const std::string name;
 };
 
+class Pube {
+public:
+	Pube()
+	{
+		std::cout << "Constructed Pube\n";
+	}
+	Pube(const Pube& source)
+	{
+		std::cout << "Copied Pube\n";
+	}
+	Pube(Pube&& donor) noexcept
+	{
+		std::cout << "Moved Pube\n";
+	}
+};
+
+
 int sum(int a, int b)
 {
 	Announcer j("j");
 	Announcer k("k");
-	auto p = std::make_unique<Announcer>("heapmem!!");
+	auto p = std::make_unique<Announcer>("heapmem with a smart pointer!!");
+	auto q = new Announcer("heapmem with a raw pointer!!");
 	if (a == 69)
 	{
 		throw std::runtime_error("<a> is the s number!");
@@ -51,6 +70,11 @@ int f(int x, int y, int z)
 
 int main()
 {
+	std::vector<Pube> pubes;
+	pubes.emplace_back();
+	pubes.emplace_back();
+	pubes.emplace_back();
+
 	try 
 	{
 		//throw std::runtime_error("An exception!");
