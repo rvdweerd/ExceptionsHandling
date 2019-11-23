@@ -1,7 +1,28 @@
 #include <iostream>
+#include <string>
+
+class Announcer
+{
+public:
+	Announcer(const std::string& name)
+		:
+		name(name)
+	{
+		std::cout << name << " constructed.\n";
+	}
+	~Announcer()
+	{
+		std::cout << name << " destructed.\n";
+	}
+private:
+	const std::string name;
+};
 
 int sum(int a, int b)
 {
+	Announcer j("j");
+	Announcer k("k");
+	auto p = std::make_unique<Announcer>("heapmem!!");
 	if (a == 69)
 	{
 		throw std::runtime_error("<a> is the s number!");
@@ -10,6 +31,7 @@ int sum(int a, int b)
 	{
 		throw std::logic_error("<b> is the weed number!");
 	}
+	Announcer l("l");
 	return a + b;
 }
 
